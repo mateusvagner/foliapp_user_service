@@ -25,13 +25,6 @@ import io.smallrye.jwt.build.Jwt;
 @Path("/user")
 public class FoliAppUserService {
 
-    @GET
-    @Path("/hello")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello RESTEasy";
-    }
-
     @POST
     @Path("/new")
     @Produces(MediaType.APPLICATION_JSON)
