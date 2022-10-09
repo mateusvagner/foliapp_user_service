@@ -8,6 +8,7 @@ import com.foliapp.userservice.domain.User;
 public class UserDatabase {
     private static UserDatabase instance;
 
+    // TODO Should be a list of UserData
     public List<User> users = new ArrayList<>();
 
     public static UserDatabase getInstance() {
