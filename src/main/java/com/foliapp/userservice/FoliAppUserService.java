@@ -34,12 +34,11 @@ public class FoliAppUserService {
         for (User userData : UserDatabase.getInstance().users) {
             if (newUser.getEmail().equals(userData.getEmail())) {
                 throw new UserAlreadyExistsException(newUser.getEmail());
-            } else {
-                saveUser(newUser);
-                return newUser;
             }
         }
-        return null;
+
+        saveUser(newUser);
+        return newUser;
     }
 
     private void saveUser(NewUserResource newUser) {
