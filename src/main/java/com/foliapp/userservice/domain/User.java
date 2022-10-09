@@ -1,10 +1,13 @@
 package com.foliapp.userservice.domain;
 
+import java.util.List;
+
 public class User {
     String name;
     String email;
     String password;
     String adress;
+    List<String> roles;
 
     public String getName() {
         return name;
@@ -36,6 +39,14 @@ public class User {
 
     public void setAdress(String adress) {
         this.adress = adress;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 
 }
