@@ -17,7 +17,7 @@ import org.eclipse.microprofile.jwt.Claims;
 import com.foliapp.userservice.domain.User;
 import com.foliapp.userservice.exception.UserAlreadyExistsException;
 import com.foliapp.userservice.fakes.UserDatabase;
-import com.foliapp.userservice.resource.UserResource;
+import com.foliapp.userservice.web.resource.UserResource;
 
 import io.smallrye.jwt.build.Jwt;
 
