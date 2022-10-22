@@ -19,8 +19,6 @@ import com.foliapp.userservice.exception.UserAlreadyExistsException;
 import com.foliapp.userservice.fakes.UserDatabase;
 import com.foliapp.userservice.resource.UserResource;
 
-import io.quarkus.logging.Log;
-
 import io.smallrye.jwt.build.Jwt;
 
 @Path("/user")
