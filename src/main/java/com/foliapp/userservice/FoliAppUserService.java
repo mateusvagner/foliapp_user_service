@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -19,6 +18,8 @@ import com.foliapp.userservice.domain.User;
 import com.foliapp.userservice.exception.UserAlreadyExistsException;
 import com.foliapp.userservice.fakes.UserDatabase;
 import com.foliapp.userservice.resource.UserResource;
+
+import io.quarkus.logging.Log;
 
 import io.smallrye.jwt.build.Jwt;
 
