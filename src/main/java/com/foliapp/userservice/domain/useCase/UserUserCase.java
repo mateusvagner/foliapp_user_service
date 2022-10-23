@@ -5,4 +5,6 @@ import com.foliapp.userservice.domain.User;
 public interface UserUserCase {
 
     User saveUser(User user);
+
+    User logInUser(User user);
 }

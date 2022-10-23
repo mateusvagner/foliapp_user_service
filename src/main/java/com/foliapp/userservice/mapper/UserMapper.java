@@ -11,4 +11,6 @@ public interface UserMapper {
     User fromResourceToDomain(UserResource user);
 
     UserEntity fromDomainToEntity(User user);
+
+    User fromEntityToDomain(UserEntity user);
 }

@@ -6,4 +6,6 @@ public interface UserController {
 
     UserResource saveUser(UserResource user);
 
+    UserResource logInUser(String email, String password);
+
 }
