@@ -3,11 +3,11 @@ package com.foliapp.userservice.domain;
 import java.util.List;
 
 public class User {
-    String name;
-    String email;
-    String password;
-    String adress;
-    List<String> roles;
+    private String name;
+    private String email;
+    private String password;
+    private String address;
+    private List<String> roles; // TODO passar para enum
 
     public String getName() {
         return name;
@@ -33,12 +33,12 @@ public class User {
         this.password = password;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<String> getRoles() {
