@@ -5,11 +5,11 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import com.foliapp.userservice.domain.User;
-import com.foliapp.userservice.domain.useCase.UserUserCase;
 import com.foliapp.userservice.fakes.UserDatabase;
 import com.foliapp.userservice.interfaceAdapter.controller.UserController;
 import com.foliapp.userservice.interfaceAdapter.repository.UserRepository;
 import com.foliapp.userservice.mapper.UserMapper;
+import com.foliapp.userservice.useCase.UserUseCase;
 import com.foliapp.userservice.web.resource.UserResource;
 
 @RequestScoped
@@ -17,13 +17,13 @@ import com.foliapp.userservice.web.resource.UserResource;
 public class StandardUserController implements UserController {
 
     @Inject
-    private UserUserCase userUserCase;
+    UserUseCase userUserCase;
 
     @Inject
-    private UserMapper userMapper;
+    UserMapper userMapper;
 
     @Inject
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Override
     public UserResource saveUser(UserResource user) {
