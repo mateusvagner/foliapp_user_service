@@ -23,7 +23,6 @@ public class StandardUserRepository implements UserRepository {
     @Override
     public User save(User user) {
         UserEntity userEntity = userMapper.fromDomainToEntity(user);
-
         UserEntity savedUser = userDao.save(userEntity);
 
         return userMapper.fromEntityToDomain(savedUser);
