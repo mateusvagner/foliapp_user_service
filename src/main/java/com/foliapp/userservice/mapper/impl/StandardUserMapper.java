@@ -12,26 +12,46 @@ public class StandardUserMapper implements UserMapper {
 
     @Override
     public UserResource fromDomainToResource(User user) {
-        // TODO Auto-generated method stub
-        return null;
+        UserResource userResource = new UserResource();
+        userResource.setName(user.getName());
+        userResource.setEmail(user.getEmail());
+        userResource.setPassword(user.getPassword());
+        userResource.setRoles(user.getRoles());
+
+        return userResource;
     }
 
     @Override
     public User fromResourceToDomain(UserResource user) {
-        // TODO Auto-generated method stub
-        return null;
+        User userDomain = new User();
+        userDomain.setName(user.getName());
+        userDomain.setEmail(user.getEmail());
+        userDomain.setPassword(user.getPassword());
+        userDomain.setRoles(user.getRoles());
+
+        return userDomain;
     }
 
     @Override
     public UserEntity fromDomainToEntity(User user) {
-        // TODO Auto-generated method stub
-        return null;
+        UserEntity userEntity = new UserEntity();
+        userEntity.setName(user.getName());
+        userEntity.setEmail(user.getEmail());
+        userEntity.setPassword(user.getPassword());
+        userEntity.setRoles(user.getRoles());
+
+        return userEntity;
     }
 
     @Override
     public User fromEntityToDomain(UserEntity user) {
-        // TODO Auto-generated method stub
-        return null;
+        User userDomain = new User();
+        userDomain.setName(user.getName());
+        userDomain.setEmail(user.getEmail());
+        userDomain.setPassword(user.getPassword());
+        userDomain.setRoles(user.getRoles());
+
+        return userDomain;
     }
 
 }
