@@ -7,7 +7,7 @@ public class User {
     private String email;
     private String password;
     private String address;
-    private List<String> roles; // TODO passar para enum
+    private List<Role> roles;
 
     public String getName() {
         return name;
@@ -41,11 +41,11 @@ public class User {
         this.address = address;
     }
 
-    public List<String> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

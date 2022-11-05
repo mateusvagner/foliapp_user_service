@@ -3,9 +3,13 @@ package com.foliapp.userservice.mapper.impl;
 import javax.enterprise.context.RequestScoped;
 
 import com.foliapp.userservice.data.entity.UserEntity;
+import com.foliapp.userservice.domain.Role;
 import com.foliapp.userservice.domain.User;
 import com.foliapp.userservice.mapper.UserMapper;
 import com.foliapp.userservice.web.resource.UserResource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestScoped
 public class StandardUserMapper implements UserMapper {
@@ -16,7 +20,7 @@ public class StandardUserMapper implements UserMapper {
         userResource.setName(user.getName());
         userResource.setEmail(user.getEmail());
         userResource.setPassword(user.getPassword());
-        userResource.setRoles(user.getRoles());
+        userResource.setRoles(this.getRolesString(user.getRoles()));
 
         return userResource;
     }
@@ -27,7 +31,7 @@ public class StandardUserMapper implements UserMapper {
         userDomain.setName(user.getName());
         userDomain.setEmail(user.getEmail());
         userDomain.setPassword(user.getPassword());
-        userDomain.setRoles(user.getRoles());
+        userDomain.setRoles(getRoles(user.getRoles()));
 
         return userDomain;
     }
@@ -38,7 +42,7 @@ public class StandardUserMapper implements UserMapper {
         userEntity.setName(user.getName());
         userEntity.setEmail(user.getEmail());
         userEntity.setPassword(user.getPassword());
-        userEntity.setRoles(user.getRoles());
+        userEntity.setRoles(this.getRolesString(user.getRoles()));
 
         return userEntity;
     }
@@ -49,9 +53,29 @@ public class StandardUserMapper implements UserMapper {
         userDomain.setName(user.getName());
         userDomain.setEmail(user.getEmail());
         userDomain.setPassword(user.getPassword());
-        userDomain.setRoles(user.getRoles());
+        userDomain.setRoles(getRoles(user.getRoles()));
 
         return userDomain;
+    }
+
+    private List<String> getRolesString(List<Role> roles) {
+        List<String> rolesString = new ArrayList<>();
+
+        for (Role role : roles) {
+            rolesString.add(role.name());
+        }
+
+        return rolesString;
+    }
+
+    private List<Role> getRoles(List<String> rolesString) {
+        List<Role> roles = new ArrayList<>();
+
+        for (String roleString : rolesString) {
+            roles.add(Role.valueOf(roleString));
+        }
+
+        return roles;
     }
 
 }

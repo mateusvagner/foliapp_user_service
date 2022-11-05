@@ -13,7 +13,7 @@ public class StandardUserUseCase implements UserUseCase {
         if (user.getName().length() <= 3) {
             throw new NameLengthNotValidException(user.getName());
         }
-        // TODO add roles?
+
         return user;
     }
 
