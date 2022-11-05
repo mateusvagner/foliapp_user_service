@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import com.foliapp.userservice.data.dao.UserDao;
 import com.foliapp.userservice.data.entity.UserEntity;
 
+import com.foliapp.userservice.exception.UserAlreadyExistsByEmailException;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 @RequestScoped
@@ -14,8 +15,19 @@ public class PanacheUserDao implements UserDao, PanacheRepository<UserEntity> {
 
     @Override
     public UserEntity save(UserEntity user) {
-        // TODO Check if email already exists
+        UserEntity userEntity = getByEmail(user.getEmail());
+
+        if (userEntity != null) {
+            throw new UserAlreadyExistsByEmailException(user.getEmail());
+        }
+
         persist(user);
+
         return user;
+    }
+
+    @Override
+    public UserEntity getByEmail(String email) {
+        return find("email", email).firstResult();
     }
 }

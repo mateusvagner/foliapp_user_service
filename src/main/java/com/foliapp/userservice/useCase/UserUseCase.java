@@ -6,5 +6,4 @@ public interface UserUseCase {
 
     User saveUser(User user);
 
-    User logInUser(User user);
 }

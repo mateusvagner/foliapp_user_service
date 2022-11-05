@@ -10,6 +10,8 @@ import com.foliapp.userservice.domain.User;
 import com.foliapp.userservice.interfaceAdapter.repository.UserRepository;
 import com.foliapp.userservice.mapper.UserMapper;
 
+import java.util.logging.Logger;
+
 @RequestScoped
 @Transactional
 public class StandardUserRepository implements UserRepository {
@@ -26,6 +28,13 @@ public class StandardUserRepository implements UserRepository {
         UserEntity savedUser = userDao.save(userEntity);
 
         return userMapper.fromEntityToDomain(savedUser);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        UserEntity userEntity = userDao.getByEmail(email);
+
+        return userMapper.fromEntityToDomain(userEntity);
     }
 
 }

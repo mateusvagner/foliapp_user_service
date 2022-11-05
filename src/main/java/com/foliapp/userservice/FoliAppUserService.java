@@ -11,6 +11,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.foliapp.userservice.exception.LoginFailedException;
+import com.foliapp.userservice.exception.NameLengthNotValidException;
 import org.eclipse.microprofile.jwt.Claims;
 
 import com.foliapp.userservice.exception.UserAlreadyExistsByEmailException;
@@ -33,6 +35,8 @@ public class FoliAppUserService {
             return userController.saveUser(newUser);
         } catch (UserAlreadyExistsByEmailException e) {
             throw new WebApplicationException(e.getMessage(), Response.Status.CONFLICT);
+        } catch (NameLengthNotValidException e) {
+            throw new WebApplicationException(e.getMessage(), Response.Status.NOT_ACCEPTABLE);
         } catch (RuntimeException e) {
             throw new WebApplicationException(e.getMessage(), Response.Status.BAD_REQUEST);
         }
@@ -45,17 +49,15 @@ public class FoliAppUserService {
         try {
             UserResource user = userController.logInUser(email, password);
 
-            return Jwt.issuer("http://localhost:8080")
+            return Jwt.issuer("http://localhost:8082")
                     .upn(user.getEmail())
                     .groups(new HashSet<>(user.getRoles()))
                     .claim(Claims.full_name, user.getName())
                     .sign();
 
-        } catch (RuntimeException e) {
-            // TODO dividir exceptions
-            throw new WebApplicationException("User or password not found", Response.Status.NOT_FOUND);
+        } catch (LoginFailedException e) {
+            throw new WebApplicationException(e.getMessage(), Response.Status.UNAUTHORIZED);
         }
-
     }
 
 }

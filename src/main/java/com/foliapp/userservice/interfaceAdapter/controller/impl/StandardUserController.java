@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import com.foliapp.userservice.domain.User;
-import com.foliapp.userservice.fakes.UserDatabase;
+import com.foliapp.userservice.exception.LoginFailedException;
 import com.foliapp.userservice.interfaceAdapter.controller.UserController;
 import com.foliapp.userservice.interfaceAdapter.repository.UserRepository;
 import com.foliapp.userservice.mapper.UserMapper;
@@ -38,13 +38,16 @@ public class StandardUserController implements UserController {
 
     @Override
     public UserResource logInUser(String email, String password) {
-        // TODO add real implementation
-        for (User userData : UserDatabase.getInstance().users) {
-            if (email.equals(userData.getEmail()) && password.equals(userData.getPassword())) {
-                return userMapper.fromDomainToResource(userData);
-            }
+        User user = userRepository.getByEmail(email);
+        if (user == null) {
+            throw new LoginFailedException();
         }
-        return null;
+
+        if (!user.getPassword().equals(password)) {
+            throw new LoginFailedException();
+        }
+
+        return userMapper.fromDomainToResource(user);
     }
 
 }
