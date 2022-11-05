@@ -72,7 +72,11 @@ public class StandardUserMapper implements UserMapper {
         List<Role> roles = new ArrayList<>();
 
         for (String roleString : rolesString) {
-            roles.add(Role.valueOf(roleString));
+            try {
+                roles.add(Role.valueOf(roleString));
+            } catch (IllegalArgumentException e) {
+                // left empty on purpose
+            }
         }
 
         return roles;
