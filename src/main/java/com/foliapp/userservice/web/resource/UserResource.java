@@ -1,4 +1,4 @@
-package com.foliapp.userservice.resource;
+package com.foliapp.userservice.web.resource;
 
 import java.util.List;
 

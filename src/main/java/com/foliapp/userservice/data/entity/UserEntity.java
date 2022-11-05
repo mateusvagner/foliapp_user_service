@@ -1,13 +1,38 @@
-package com.foliapp.userservice.domain;
+package com.foliapp.userservice.data.entity;
 
 import java.util.List;
 
-public class User {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "User")
+public class UserEntity {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String name;
+
+    @Column(unique = true)
     private String email;
+
     private String password;
+
     private String address;
-    private List<Role> roles;
+
+    @ElementCollection
+    @CollectionTable(name = "Role", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "roles")
+    private List<String> roles;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -41,12 +66,11 @@ public class User {
         this.address = address;
     }
 
-    public List<Role> getRoles() {
+    public List<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(List<String> roles) {
         this.roles = roles;
     }
-
 }
