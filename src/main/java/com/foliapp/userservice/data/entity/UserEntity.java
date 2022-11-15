@@ -21,7 +21,7 @@ public class UserEntity {
 
     private String address;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Role", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "roles")
     private List<String> roles;

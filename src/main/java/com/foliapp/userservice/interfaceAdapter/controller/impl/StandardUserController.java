@@ -13,7 +13,6 @@ import com.foliapp.userservice.useCase.UserUseCase;
 import com.foliapp.userservice.web.resource.UserResource;
 
 @RequestScoped
-@Transactional
 public class StandardUserController implements UserController {
 
     @Inject

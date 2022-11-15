@@ -42,6 +42,7 @@ public class StandardUserMapper implements UserMapper {
         userEntity.setName(user.getName());
         userEntity.setEmail(user.getEmail());
         userEntity.setPassword(user.getPassword());
+        userEntity.setAddress(user.getAddress());
         userEntity.setRoles(this.getRolesString(user.getRoles()));
 
         return userEntity;
@@ -53,6 +54,7 @@ public class StandardUserMapper implements UserMapper {
         userDomain.setName(user.getName());
         userDomain.setEmail(user.getEmail());
         userDomain.setPassword(user.getPassword());
+        userDomain.setAddress(user.getAddress());
         userDomain.setRoles(getRoles(user.getRoles()));
 
         return userDomain;
@@ -70,6 +72,9 @@ public class StandardUserMapper implements UserMapper {
 
     private List<Role> getRoles(List<String> rolesString) {
         List<Role> roles = new ArrayList<>();
+
+        if (rolesString.isEmpty())
+            return roles;
 
         for (String roleString : rolesString) {
             try {
