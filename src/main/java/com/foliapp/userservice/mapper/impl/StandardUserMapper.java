@@ -1,12 +1,13 @@
 package com.foliapp.userservice.mapper.impl;
 
-import javax.enterprise.context.RequestScoped;
 
 import com.foliapp.userservice.data.entity.UserEntity;
 import com.foliapp.userservice.domain.Role;
 import com.foliapp.userservice.domain.User;
 import com.foliapp.userservice.mapper.UserMapper;
 import com.foliapp.userservice.web.resource.UserResource;
+
+import javax.enterprise.context.RequestScoped;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +74,7 @@ public class StandardUserMapper implements UserMapper {
     private List<Role> getRoles(List<String> rolesString) {
         List<Role> roles = new ArrayList<>();
 
-        if (rolesString.isEmpty())
+        if (rolesString == null || rolesString.isEmpty())
             return roles;
 
         for (String roleString : rolesString) {
