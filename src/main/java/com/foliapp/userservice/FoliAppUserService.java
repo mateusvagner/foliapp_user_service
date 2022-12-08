@@ -1,6 +1,7 @@
 package com.foliapp.userservice;
 
 import java.util.HashSet;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.ws.rs.FormParam;
@@ -13,6 +14,8 @@ import javax.ws.rs.core.Response;
 
 import com.foliapp.userservice.exception.LoginFailedException;
 import com.foliapp.userservice.exception.NameLengthNotValidException;
+import org.eclipse.microprofile.faulttolerance.Retry;
+import org.eclipse.microprofile.faulttolerance.Timeout;
 import org.eclipse.microprofile.jwt.Claims;
 
 import com.foliapp.userservice.exception.UserAlreadyExistsByEmailException;
@@ -30,8 +33,11 @@ public class FoliAppUserService {
     @POST
     @Path("/new")
     @Produces(MediaType.APPLICATION_JSON)
+    @Retry(delay = 2000)
+    @Timeout(7000)
     public UserResource postNewUser(UserResource newUser) {
         try {
+            newUser.setKeyIdentifier(UUID.randomUUID().toString());
             return userController.saveUser(newUser);
         } catch (UserAlreadyExistsByEmailException e) {
             throw new WebApplicationException(e.getMessage(), Response.Status.CONFLICT);
@@ -45,6 +51,8 @@ public class FoliAppUserService {
     @POST
     @Path("/login")
     @Produces(MediaType.TEXT_PLAIN)
+    @Retry(delay = 2000)
+    @Timeout(7000)
     public String getAccessToken(@FormParam("email") String email, @FormParam("password") String password) {
         try {
             UserResource user = userController.logInUser(email, password);
@@ -53,6 +61,7 @@ public class FoliAppUserService {
                     .upn(user.getEmail())
                     .groups(new HashSet<>(user.getRoles()))
                     .claim(Claims.full_name, user.getName())
+                    .claim(Claims.kid, user.getKeyIdentifier())
                     .sign();
 
         } catch (LoginFailedException e) {
