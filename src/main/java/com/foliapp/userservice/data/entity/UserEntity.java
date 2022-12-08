@@ -1,6 +1,7 @@
 package com.foliapp.userservice.data.entity;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.*;
 
@@ -11,6 +12,8 @@ public class UserEntity {
     @Id
     @GeneratedValue
     private Long id;
+
+    private String keyIdentifier;
 
     private String name;
 
@@ -32,6 +35,14 @@ public class UserEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getKeyIdentifier() {
+        return keyIdentifier;
+    }
+
+    public void setKeyIdentifier(String keyIdentifier) {
+        this.keyIdentifier = keyIdentifier;
     }
 
     public String getName() {

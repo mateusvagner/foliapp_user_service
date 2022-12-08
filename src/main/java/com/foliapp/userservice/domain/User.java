@@ -1,13 +1,24 @@
 package com.foliapp.userservice.domain;
 
 import java.util.List;
+import java.util.UUID;
 
 public class User {
+
+    private String keyIdentifier;
     private String name;
     private String email;
     private String password;
     private String address;
     private List<Role> roles;
+
+    public String getKeyIdentifier() {
+        return keyIdentifier;
+    }
+
+    public void setKeyIdentifier(String keyIdentifier) {
+        this.keyIdentifier = keyIdentifier;
+    }
 
     public String getName() {
         return name;

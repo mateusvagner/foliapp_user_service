@@ -18,6 +18,7 @@ public class StandardUserMapper implements UserMapper {
     @Override
     public UserResource fromDomainToResource(User user) {
         UserResource userResource = new UserResource();
+        userResource.setKeyIdentifier(user.getKeyIdentifier());
         userResource.setName(user.getName());
         userResource.setEmail(user.getEmail());
         userResource.setPassword(user.getPassword());
@@ -29,6 +30,7 @@ public class StandardUserMapper implements UserMapper {
     @Override
     public User fromResourceToDomain(UserResource user) {
         User userDomain = new User();
+        userDomain.setKeyIdentifier(user.getKeyIdentifier());
         userDomain.setName(user.getName());
         userDomain.setEmail(user.getEmail());
         userDomain.setPassword(user.getPassword());
@@ -40,6 +42,7 @@ public class StandardUserMapper implements UserMapper {
     @Override
     public UserEntity fromDomainToEntity(User user) {
         UserEntity userEntity = new UserEntity();
+        userEntity.setKeyIdentifier(user.getKeyIdentifier());
         userEntity.setName(user.getName());
         userEntity.setEmail(user.getEmail());
         userEntity.setPassword(user.getPassword());
@@ -52,6 +55,7 @@ public class StandardUserMapper implements UserMapper {
     @Override
     public User fromEntityToDomain(UserEntity user) {
         User userDomain = new User();
+        userDomain.setKeyIdentifier(user.getKeyIdentifier());
         userDomain.setName(user.getName());
         userDomain.setEmail(user.getEmail());
         userDomain.setPassword(user.getPassword());
