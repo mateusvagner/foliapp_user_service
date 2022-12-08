@@ -3,10 +3,20 @@ package com.foliapp.userservice.web.resource;
 import java.util.List;
 
 public class UserResource {
-    String name;
-    String email;
-    String password;
-    List<String> roles;
+
+    private String keyIdentifier;
+    private String name;
+    private String email;
+    private String password;
+    private List<String> roles;
+
+    public String getKeyIdentifier() {
+        return keyIdentifier;
+    }
+
+    public void setKeyIdentifier(String keyIdentifier) {
+        this.keyIdentifier = keyIdentifier;
+    }
 
     public String getName() {
         return name;
